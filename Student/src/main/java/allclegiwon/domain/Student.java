@@ -21,6 +21,8 @@ public class Student {
 
     private String password;
 
+    private Department department;
+
     public static StudentRepository repository() {
         StudentRepository studentRepository = StudentApplication.applicationContext.getBean(
             StudentRepository.class

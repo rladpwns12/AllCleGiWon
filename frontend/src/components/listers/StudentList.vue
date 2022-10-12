@@ -13,6 +13,7 @@
                             
                             
                             
+                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
@@ -20,6 +21,7 @@
                             [ Name :  {{data.name }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ Email :  {{data.email }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ Password :  {{data.password }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Department :  {{data.department }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -105,6 +107,7 @@
                 'name': '',
                 'email': '',
                 'password': '',
+                'department': '',
             }
         },
         methods: {

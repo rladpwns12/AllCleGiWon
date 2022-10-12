@@ -17,6 +17,7 @@
             <div>
                 <String label="Password" v-model="item.password" :editMode="editMode" @change="change" />
             </div>
+            <Department offline label="Department" v-model="item.department" :editMode="false" :key="false" @change="change" />
         </v-card-text>
 
         <v-card-actions>

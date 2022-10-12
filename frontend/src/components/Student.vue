@@ -21,6 +21,7 @@
             <String label="Name" v-model="value.name" :editMode="editMode"/>
             <String label="Email" v-model="value.email" :editMode="editMode"/>
             <String label="Password" v-model="value.password" :editMode="editMode"/>
+            <Department offline label="Department" v-model="value.department" :editMode="editMode" @change="change"/>
         </v-card-text>
 
         <v-card-actions>

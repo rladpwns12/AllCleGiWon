@@ -72,6 +72,7 @@
                 'name': '',
                 'email': '',
                 'password': '',
+                'department': '',
             }
         },
         methods:{
