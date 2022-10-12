@@ -70,6 +70,7 @@
                     { text: "name", value: "name" },
                     { text: "email", value: "email" },
                     { text: "password", value: "password" },
+                    { text: "department", value: "department" },
                 ],
             student : [],
             newValue: {},
@@ -91,6 +92,7 @@
                 'name': '',
                 'email': '',
                 'password': '',
+                'department': '',
             }
         },
         methods: {

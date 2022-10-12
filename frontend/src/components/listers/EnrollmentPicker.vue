@@ -18,16 +18,7 @@
                                 StudentId :  {{item.studentId }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
-                                Name :  {{item.name }}
-                            </v-list-item-subtitle>
-                            <v-list-item-subtitle>
-                                Email :  {{item.email }}
-                            </v-list-item-subtitle>
-                            <v-list-item-subtitle>
-                                Password :  {{item.password }}
-                            </v-list-item-subtitle>
-                            <v-list-item-subtitle>
-                                Department :  {{item.department }}
+                                CourseId :  {{item.courseId }}
                             </v-list-item-subtitle>
                         </v-list-item-content>
 
@@ -46,7 +37,7 @@
     const axios = require('axios').default;
 
     export default {
-        name: 'StudentPicker',
+        name: 'EnrollmentPicker',
         props: {
             value: [String, Object, Array, Number, Boolean],
         },
@@ -56,14 +47,14 @@
         }),
         async created() {
             var me = this;
-            var temp = await axios.get(axios.fixUrl('/students'))
+            var temp = await axios.get(axios.fixUrl('/enrollments'))
             if(temp.data) {
-                me.list = temp.data._embedded.students;
+                me.list = temp.data._embedded.enrollments;
             }
 
             if(me.value && typeof me.value == "object" && Object.values(me.value)[0]) {
                 var id = Object.values(me.value)[0];
-                var tmpValue = await axios.get(axios.fixUrl('/students/' + id))
+                var tmpValue = await axios.get(axios.fixUrl('/enrollments/' + id))
                 if(tmpValue.data) {
                     var val = tmpValue.data
                     me.list.forEach(function(item, idx) {
@@ -79,11 +70,7 @@
                 var obj = {}
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
-                    obj['studentId'] = arr[4]; 
-                    
-                    
-                    
-                    
+                    obj['id'] = arr[4]; 
                     
                     
                     

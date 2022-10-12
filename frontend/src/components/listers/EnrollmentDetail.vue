@@ -1,7 +1,7 @@
 <template>
     <v-card outlined>
         <v-card-title>
-            Student # {{item._links.self.href.split("/")[item._links.self.href.split("/").length - 1]}}
+            Enrollment # {{item._links.self.href.split("/")[item._links.self.href.split("/").length - 1]}}
         </v-card-title>
 
         <v-card-text>
@@ -9,15 +9,8 @@
                 <Number label="StudentId" v-model="item.studentId" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <String label="Name" v-model="item.name" :editMode="editMode" @change="change" />
+                <Number label="CourseId" v-model="item.courseId" :editMode="editMode" @change="change" />
             </div>
-            <div>
-                <String label="Email" v-model="item.email" :editMode="editMode" @change="change" />
-            </div>
-            <div>
-                <String label="Password" v-model="item.password" :editMode="editMode" @change="change" />
-            </div>
-            <Department offline label="Department" v-model="item.department" :editMode="false" :key="false" @change="change" />
         </v-card-text>
 
         <v-card-actions>
@@ -64,7 +57,7 @@
     const axios = require('axios').default;
 
     export default {
-        name: 'StudentDetail',
+        name: 'EnrollmentDetail',
         components:{},
         props: {
         },
@@ -75,7 +68,7 @@
         async created() {
             var me = this;
             var params = this.$route.params;
-            var temp = await axios.get(axios.fixUrl('/students/' + params.id))
+            var temp = await axios.get(axios.fixUrl('/enrollments/' + params.id))
             if(temp.data) {
                 me.item = temp.data
             }

@@ -11,6 +11,8 @@ import StudentDetail from "./components/listers/StudentDetail"
 import CourseManager from "./components/listers/CourseCards"
 import CourseDetail from "./components/listers/CourseDetail"
 
+import EnrollmentManager from "./components/listers/EnrollmentCards"
+import EnrollmentDetail from "./components/listers/EnrollmentDetail"
 
 
 export default new Router({
@@ -39,6 +41,16 @@ export default new Router({
                 component: CourseDetail
             },
 
+            {
+                path: '/enrollments',
+                name: 'EnrollmentManager',
+                component: EnrollmentManager
+            },
+            {
+                path: '/enrollments/:id',
+                name: 'EnrollmentDetail',
+                component: EnrollmentDetail
+            },
 
 
 

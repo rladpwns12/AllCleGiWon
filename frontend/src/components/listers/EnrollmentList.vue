@@ -12,16 +12,12 @@
                             
                             
                             
-                            
-                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
+                            [ Id :  {{data.id }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ StudentId :  {{data.studentId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ Name :  {{data.name }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ Email :  {{data.email }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ Password :  {{data.password }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ Department :  {{data.department }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ CourseId :  {{data.courseId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -55,7 +51,7 @@
                         </v-fab-transition>
                     </template>
 
-                    <Student :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
+                    <Enrollment :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
                 
                     <v-btn
                             style="postition:absolute; top:2%; right:2%"
@@ -74,12 +70,12 @@
 
 <script>
     const axios = require('axios').default;
-    import Student from './../Student.vue';
+    import Enrollment from './../Enrollment.vue';
 
     export default {
-        name: 'StudentManager',
+        name: 'EnrollmentManager',
         components: {
-            Student,
+            Enrollment,
         },
         props: {
             offline: Boolean,
@@ -98,16 +94,13 @@
                 return;
             } 
 
-            var temp = await axios.get(axios.fixUrl('/students'))
-            temp.data._embedded.students.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
-            this.values = temp.data._embedded.students;
+            var temp = await axios.get(axios.fixUrl('/enrollments'))
+            temp.data._embedded.enrollments.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1])
+            this.values = temp.data._embedded.enrollments;
             
             this.newValue = {
                 'studentId': 0,
-                'name': '',
-                'email': '',
-                'password': '',
-                'department': '',
+                'courseId': 0,
             }
         },
         methods: {

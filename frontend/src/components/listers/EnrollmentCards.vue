@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 style = "margin-left:4.5%; margin-top:-10px;">Student</h1>
+        <h1 style = "margin-left:4.5%; margin-top:-10px;">Enrollment</h1>
         <v-col style="margin-bottom:40px;">
             <div class="text-center">
                 <v-dialog
@@ -10,7 +10,7 @@
                         hide-overlay
                         transition="dialog-bottom-transition"
                 >
-                    <Student :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
+                    <Enrollment :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
                             @add="append" v-if="tick"/>
 
                     <v-btn
@@ -33,7 +33,7 @@
             </div>
         </v-col>
         <v-row>
-            <Student :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
+            <Enrollment :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
         </v-row>
     </div>
 </template>
@@ -41,12 +41,12 @@
 <script>
 
     const axios = require('axios').default;
-    import Student from './../Student.vue';
+    import Enrollment from './../Enrollment.vue';
 
     export default {
-        name: 'StudentManager',
+        name: 'EnrollmentManager',
         components: {
-            Student,
+            Enrollment,
         },
         props: {
             offline: Boolean
@@ -64,15 +64,12 @@
                 return;
             } 
 
-            var temp = await axios.get(axios.fixUrl('/students'))
-            me.values = temp.data._embedded.students;
+            var temp = await axios.get(axios.fixUrl('/enrollments'))
+            me.values = temp.data._embedded.enrollments;
             
             me.newValue = {
                 'studentId': 0,
-                'name': '',
-                'email': '',
-                'password': '',
-                'department': '',
+                'courseId': 0,
             }
         },
         methods:{

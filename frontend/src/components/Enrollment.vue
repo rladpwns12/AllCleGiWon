@@ -10,18 +10,15 @@
         </template>
 
         <v-card-title v-if="value._links">
-            Student # {{value._links.self.href.split("/")[value._links.self.href.split("/").length - 1]}}
+            Enrollment # {{value._links.self.href.split("/")[value._links.self.href.split("/").length - 1]}}
         </v-card-title >
         <v-card-title v-else>
-            Student
+            Enrollment
         </v-card-title >
 
         <v-card-text>
             <Number label="StudentId" v-model="value.studentId" :editMode="editMode"/>
-            <String label="Name" v-model="value.name" :editMode="editMode"/>
-            <String label="Email" v-model="value.email" :editMode="editMode"/>
-            <String label="Password" v-model="value.password" :editMode="editMode"/>
-            <Department offline label="Department" v-model="value.department" :editMode="editMode" @change="change"/>
+            <Number label="CourseId" v-model="value.courseId" :editMode="editMode"/>
         </v-card-text>
 
         <v-card-actions>
@@ -83,7 +80,7 @@
 
 
     export default {
-        name: 'Student',
+        name: 'Enrollment',
         components:{
         },
         props: {
@@ -135,7 +132,7 @@
 
                     if(!this.offline) {
                         if(this.isNew) {
-                            temp = await axios.post(axios.fixUrl('/students'), this.value)
+                            temp = await axios.post(axios.fixUrl('/enrollments'), this.value)
                         } else {
                             temp = await axios.put(axios.fixUrl(this.value._links.self.href), this.value)
                         }
